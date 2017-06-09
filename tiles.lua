@@ -5,8 +5,8 @@ TilesMap = {}
 -- meta method
 TilesMap.__index = TilesMap
 
-TILE_BRICK = 1
-TILE_EMPTY = 29
+BRICK = 1
+EMPTY = 29
 
 -- constructor
 function TilesMap:create()
@@ -36,21 +36,18 @@ function TilesMap:create()
     -- fill map with empty tiles
     for y = 1, this.mapHeight do
         for x = 1, this.mapWidth do
-            -- TODO: set that tile to be our empty tile defined above
-            -- HINT: maybe this file has a function for setting tiles?
-
+            -- set that tile to be our empty tile defined above
+            -- use function for setting tiles
+            this:setTile(x,y,EMPTY)
         end
     end
-
     -- -- fill bottom half of map with tiles
     for y = this.mapHeight / 2, this.mapHeight do
         for x = 1, this.mapWidth do
-            -- TODO: set that tile to be our brick tile defined above
-            -- HINT: maybe this file has a function for setting tiles?
-
+            -- set that tile to be our brick tile defined above
+            this:setTile(x,y,BRICK)
         end
     end
-
     return this
 end
 
