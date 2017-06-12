@@ -53,34 +53,22 @@ end
 
 -- returns an integer value for the tile at a given x-y coordinate
 function Map:getTile(x, y)
-    -- TODO: return the tile ID at a given X, Y coordinate
-    -- HINT: maybe we already have a structure defined in our class for holding tiles?
-    -- HINT: if this structure is a 1-dimensional "array" of sorts, how can we
-    -- compute its index given an X and a Y value? maybe by multiplying the map
-    -- width by some value?
-
+    return self.tiles[(self.mapWidth * (y-1)) + x)]
 end
 
 -- sets a tile at a given x-y coordinate to an integer value
 function Map:setTile(x, y, tile)
-    -- TODO: assign a tile ID at a given X, Y coordinate in this class
-    -- HINT: we should already have a structure for holding the IDs
-    -- HINT: just like getTile, how can we calculate the index given an X and
-    -- Y value? seems like mapWidth is the key here....
-
+    -- assign a tile ID at a given X, Y coordinate in this class
+    -- calculate the index given an X and Y value
+    tile = self.tiles[(self.mapWidth * (y-1)) + x)]
 end
 
 -- renders our map to the screen, to be called by main's render
 function Map:render()
     for y = 1, self.mapHeight do
         for x = 1, self.mapWidth do
-            -- TODO: draw to the screen the tile at X, Y
-            -- HINT: love.graphics.draw has a variant that takes in a quad; we'll
-            -- probably need this to get a specific tile out of our spritesheet
-            -- HINT: maybe we can use getTile once implemented?
-            -- HINT: though Lua tables are 1-indexed, drawing in LÖVE still starts
-            -- at 0, 0!
-
+            -- draw to the screen the tile at X, Y
+            love.graphics.draw(self.spritesMap, self.sprites[self:getTile(x,y), (x-1) * self.tileWidth, (y-1) * self.tileHeight])
         end
     end
 end
